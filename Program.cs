@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace gendate
 {
@@ -16,12 +18,22 @@ namespace gendate
     			"dd/MM/yyyy",
     			"dd/MM/yy",
     			"dd-MM-yyyy",
-    			"dd-MM-yy",    			
+    			"dd-MM-yy",
+				"d/M/yy",
+				"d/M/yyyy",
     		};
 
+			var dates = new List<string>();
 			foreach (var format in formats)
-        		for (var date = firstDate; date <= lastDate; date = date.AddDays(1))        		
-            		Console.WriteLine(date.ToString(format));
+			{
+				for (var date = firstDate; date <= lastDate; date = date.AddDays(1))
+					dates.Add(date.ToString(format));
+
+			}
+			dates.Sort();
+
+			foreach (var date in dates)
+				Console.WriteLine(date);
         }
     }
 }
